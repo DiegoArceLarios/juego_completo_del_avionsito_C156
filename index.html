@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+
+    <script src="./Components/Rotation.js"></script>
+    <script src="./Components/Target.js"></script>
+    <script src="./Components/Collider.js"></script>
+    <script src="./Components/Game.js"></script>
+
+  </head>
+
+  <body>
+    <a-scene background="color: #026F90">
+
+      <a-entity id="look" look-controls camera position="0 2 20">
+        <a-entity geometry="primitive: circle; radius: 0.001" position="0 0 -0.1"
+        material="color: white"></a-entity>
+      </a-entity>
+
+      <!--Manejo de recursos-->
+      <a-assets timeout="10000">        
+        <a-assets-item id= "terreno" src = "./assets/models/terrain/scene.gltf"></a-assets-item>
+        <a-assets-item id = "avion" src = "./assets/models/airplane/scene.gltf"></a-assets-item>
+      </a-assets>
+
+      <!-- Terreno  -->
+     <a-entity id = "terrenoModelo" gltf-model = #terreno position = "0 0 0" scale = "0.3 0.3 0.3" 
+     animation = "property: position; to: 0 0 1000; easin: linear; loop: true; dur: 50000" terrain-rotation target-ring flying-birds>
+     </a-entity>
+
+     <a-entity id = "avionModelo" gltf-model = "#avion"  rotation = "0 90 0" position = "0 0 15" scale = "1 1 1" plane_rotation dynamic-body = "mass: 0">
+     </a-entity>
+
+     <a-entity id = "header" position = "3 -4 0">
+        <a-entity position = "-28.5 21.5 0" 
+        text = 'font: exo2bold; align: center; width: 40; color: black; value: VUELO VIRTUAL'>
+        </a-entity>
+
+        <a-entity position = "-23.5 19.3 0">
+        <a-entity position = "-1.5 0.07 0" 
+        text = 'font: aileronsemibold; width: 12; color: black; value: Tiempo\nrestante'></a-entity>
+        
+
+        <a-entity id = "timer" position = "-9 0.3 0" 
+        text = 'font: exo2bold; align: center; width: 20; color: black; value: 00:00'></a-entity>
+        </a-entity>
+        
+        <!-- Estado de los objetivos -->
+        <a-entity position="-18 19.3 0">
+          <a-entity position="-0.6 0.13 0" text="font: aileronsemibold; width: 12; color: black; value: Objetivos\nrestantes"></a-entity>
+          <a-entity id="targets" position="-8 0.3 0" text="font: exo2bold; align: center; width: 30; color: black; value: 20" ></a-entity>
+              </a-entity>
+      
+           <!-- Puntaje -->
+           <a-entity position="25.5 21.5 0">
+           <a-entity position="" text="font: exo2bold; align: center; width: 40; color: black; value: PUNTAJE"></a-entity>
+           <a-entity id="score" position="0 -2 0" text="font: exo2bold; align: center; width: 40; color: black; value: 0"></a-entity>
+              </a-entity>
+
+     </a-entity>
+
+     <a-entity id = "endgame_text" position = "0 7.5 0" visible="false"
+     text = "font: exo2bold; align: center; width: 50; color: white; value: ¡FIN DEL JUEGO!"></a-enitity>
+      
+    </a-scene>
+  </body>
+</html>
